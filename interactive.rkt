@@ -7,6 +7,9 @@
 ;; TODO - try implementing Wallingford, Elm, and FrTime demos.
 ;; TODO - explore the relational aspect much more.
 
+(define pi 3.14159)
+(define two-pi (* pi 2))
+
 ;;; window size
 (define horiz 300)
 (define vert 300)
@@ -126,5 +129,36 @@
                       (make-posn (+ 0 (* (car x/y) 10))
                                  (+ 0 (* (cadr x/y) 10)))))
                    factor-ls))))))
-        ;; don't close the viewpoint yet!  the callback won't be called for another second!
+        ;; Don't close the viewpoint yet!  The callback won't be called for another second!
+        ;; What is the right way to clean up here?
         void)))
+
+
+;;; Draw a line representing the seconds hand of a clock (current-seconds mod 60).
+;;; Doesn't use miniKanren.
+(define (simple-clock-by-time)
+  (open-graphics)
+  (let ((w (open-viewport "draw-line-mult-by-time" horiz vert)))
+    (dynamic-wind
+        void
+        (let loop ((old-time (modulo (current-seconds) 60)))
+          (let ((time (modulo (current-seconds) 60)))
+            (if (= time old-time)
+                (loop time)
+                (let ((angle (- (* (/ two-pi 60) time) (/ two-pi 4))))
+                  (let ((length 300.0))
+                    (let ((x (* (cos angle) length))
+                          (y (* (sin angle) length)))
+                      (displayln time)
+                      (displayln x)
+                      (displayln y)
+                      ((clear-viewport w))
+                      ((draw-string w) (make-posn 10 10) (number->string time))
+                      ((draw-line w)
+                       (make-posn horiz-center vert-center)
+                       (make-posn (+ horiz-center x)
+                                  (+ vert-center y)))
+                      (loop time)))))))
+        (begin
+          (close-viewport w)
+          (close-graphics)))))

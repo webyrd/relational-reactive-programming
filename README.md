@@ -47,4 +47,13 @@ Uses a timed callback to wait for the second to increment.
 
 ---
 
+```
+(simple-clock-by-time)
+```
+
+Draw a line representing the seconds hand of a clock (current-seconds mod 60).
+Doesn't use miniKanren.
+
+---
+
 Make sure to press the `Stop` button when you are finished!
