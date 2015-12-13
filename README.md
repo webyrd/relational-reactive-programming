@@ -8,16 +8,43 @@ Based on miniKanren-with-symbolic-constraints.
 
 Open `interactive.rkt` in DrRacket.  Press the `Run` button.  Then call one of the example programs from the REPL:
 
+---
+
 ```
 (mult-by-x-pos)
 ```
 
-or
+Display all the factors of n, where n is the x position of the cursor, mod 50.
+
+---
 
 ```
 (draw-line-mult-by-x-pos)
 ```
 
-Then mouse over the little window that pops up.
+Draw lines, whose x/y coordinates reflect all the factors of n,
+where n is the x position of the cursor, mod 50.
+
+---
+
+```
+(draw-line-mult-by-time)
+```
+
+Draw lines, whose x/y coordinates reflect all the factors of n, where
+n is the current time in seconds, mod 50.  Uses busy-waiting to wait
+for the second to increment.
+
+---
+
+```
+(draw-line-mult-by-time-callback)
+```
+
+Draw lines, whose x/y coordinates reflect all the factors of n,
+where n is the current time in seconds, mod 50.
+Uses a timed callback to wait for the second to increment.
+
+---
 
 Make sure to press the `Stop` button when you are finished!
