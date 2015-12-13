@@ -50,7 +50,7 @@ Uses a timed callback to wait for the second to increment.
 (scrub-run-n-appendo)
 
 Use the x position of the mouse, mod 6, to determine which answer from
-a (run* (a b) (appendo a b '(a b c d e))) to display.
+ ```(run* (l s) (appendo l s '(a b c d e)))``` to display.
 
 ---
 
