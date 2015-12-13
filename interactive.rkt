@@ -52,9 +52,7 @@
           (if p
               (let ((x (modulo (posn-x p) 50)))
                 (when (not (= x old-x))
-                                        ; (displayln x)
                   (let ((ans (run* (a b) (*o a b (build-num x)))))
-                                        ; (displayln ans)
                     (let ((factor-ls  (map (lambda (a) (map unbuild-num a)) ans)))
                       (displayln factor-ls)
                       ((clear-viewport w))
@@ -87,7 +85,6 @@
             (if (= time old-time)
                 (loop time)
                 (let ((ans (run* (a b) (*o a b (build-num time)))))
-                                        ; (displayln ans)
                   (let ((factor-ls  (map (lambda (a) (map unbuild-num a)) ans)))
                     (displayln factor-ls)
                     ((clear-viewport w))
@@ -118,7 +115,6 @@
          (lambda args
            (let ((time (modulo (current-seconds) 50)))
              (let ((ans (run* (a b) (*o a b (build-num time)))))
-                                        ; (displayln ans)
                (let ((factor-ls  (map (lambda (a) (map unbuild-num a)) ans)))
                  (displayln factor-ls)
                  ((clear-viewport w))
