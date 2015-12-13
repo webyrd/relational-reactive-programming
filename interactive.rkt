@@ -134,6 +134,31 @@
         void)))
 
 
+;;; Use the x position of the mouse, mod 6, to determine which answer
+;;; from a (run* (a b) (appendo a b '(a b c d e))) to display.
+(define (scrub-run-n-appendo)
+  (open-graphics)
+  (let ((w (open-viewport "scrub-run-n-appendo" horiz vert)))
+    (dynamic-wind
+        void
+        (let loop ((p (query-mouse-posn w))
+                   (old-x 0))
+          (if p
+              (let ((x (modulo (posn-x p) 6)))
+                (when (not (= x old-x))
+                  (let ((ans (run* (a b) (appendo a b '(a b c d e)))))
+                    ((clear-viewport w))
+                    (let ((a/b (list-ref ans x)))
+                      ((draw-string w) (make-posn 10 100) (format "~s" (car a/b)))
+                      ((draw-string w) (make-posn 100 100) (format "~s" (cadr a/b)))))
+                  (viewport-flush-input w))
+                (loop (query-mouse-posn w) x))
+              (loop (query-mouse-posn w) old-x)))
+        (begin
+          (close-viewport w)
+          (close-graphics)))))
+
+
 ;;; Draw a line representing the seconds hand of a clock (current-seconds mod 60).
 ;;; Doesn't use miniKanren.
 (define (simple-clock-by-time)
