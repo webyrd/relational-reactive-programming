@@ -5,8 +5,7 @@
          fresh
          conde
          symbolo numbero
-         absento
-         (all-defined-out))
+         absento)
 
 ;; extra stuff for racket
 ;; due mostly to samth

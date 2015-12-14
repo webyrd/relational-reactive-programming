@@ -37,6 +37,16 @@ For example, try `()` or `(a b c d e)`.
 
 ---
 
+```
+(slider-appendo-out-length)
+```
+
+Use the slider to determine the length of the `out` list in
+from `(run* (l s) (appendo l s out))`, where `out` is
+`()`, `(a)`, `(a b)`, `(a b c)`, etc.
+
+---
+
 ### Legacy graphics examples
 
 Open `legacy-interactive.rkt` in DrRacket.  Press the `Run` button.  Then call one of the example programs from the REPL:

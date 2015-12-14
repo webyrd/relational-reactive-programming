@@ -15,6 +15,6 @@
          /o
          logo
          expo
-         (all-defined-out))
+         appendo)
 
 (include "numbers.scm")

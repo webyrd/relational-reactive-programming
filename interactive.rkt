@@ -17,10 +17,6 @@
 (define vert-center (quotient vert 2))
 
 
-(define (current-milliseconds)
-  (inexact->exact (floor (current-inexact-milliseconds))))
-
-
 ;;; Use the slider to determine which answer
 ;;; from (run* (l s) (appendo l s '(a b c d e))) to display.
 (define (slider-run-n-appendo)
@@ -65,4 +61,27 @@
                                       (let ((out (read sp)))
                                         (let ((ans (run 10 (l s) (appendo l s out))))
                                           (send results set-label (format "~s" ans)))))))))))
+        (send frame show #t)))))
+
+
+;;; Use the slider to determine the length of the 'out' list in
+;;; from (run* (l s) (appendo l s out)), where 'out' is
+;;; (), (a), (a b), (a b c), etc.
+(define (slider-appendo-out-length)
+  (let ((frame (new frame% [label "slider-appendo-out-length"])))
+    (let ((results (new message% [parent frame]
+                        [label "answers go here..."]
+                        [auto-resize #t])))
+      (let ((scrubber (new slider%
+                           (label "out length")
+                           (parent frame)
+                           (min-value 0)
+                           (max-value 6)
+                           (init-value 0)
+                           (min-width 700)
+                           (callback (lambda (button event)
+                                       (let ((len (send button get-value)))
+                                         (let ((out (take '(a b c d e f g h i j k l m n o p) len)))
+                                           (let ((ans (run* (l s) (appendo l s out))))
+                                             (send results set-label (format "~s" ans))))))))))
         (send frame show #t)))))
