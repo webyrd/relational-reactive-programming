@@ -42,3 +42,27 @@
                                              (send x-msg set-label (format "~s" (car l/s)))
                                              (send y-msg set-label (format "~s" (cadr l/s)))))))))))
         (send frame show #t)))))
+
+
+
+;;; Displays an editable text field representing the `out` argument in
+;;; (run* (l s) (appendo l s out)).  Whenever the text field is changed,
+;;; the run expression is re-run, and the results are displayed in a label.
+;;;
+;;; For example, try () or (a b c d e).
+(define (text-field-last-appendo-argument)
+  (let ((frame (new frame% [label "text-field-last-appendo-argument"])))
+    (let ((results (new message% [parent frame]
+                        [label "answers go here..."]
+                        [auto-resize #t])))
+      (let ((txt (new text-field%
+                      (label "out")
+                      (parent frame)
+                      (init-value "out expression goes here...")
+                      (callback (lambda (button event)
+                                  (let ((out-str (send button get-value)))
+                                    (let ((sp (open-input-string out-str)))
+                                      (let ((out (read sp)))
+                                        (let ((ans (run 10 (l s) (appendo l s out))))
+                                          (send results set-label (format "~s" ans)))))))))))
+        (send frame show #t)))))

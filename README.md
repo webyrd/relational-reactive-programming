@@ -25,6 +25,18 @@ from `(run* (l s) (appendo l s '(a b c d e)))` to display.
 
 ---
 
+```
+(text-field-last-appendo-argument)
+```
+
+Displays an editable text field representing the `out` argument in
+`(run* (l s) (appendo l s out))`.  Whenever the text field is changed,
+the run expression is re-run, and the results are displayed in a label.
+
+For example, try `()` or `(a b c d e)`.
+
+---
+
 ### Legacy graphics examples
 
 Open `legacy-interactive.rkt` in DrRacket.  Press the `Run` button.  Then call one of the example programs from the REPL:
