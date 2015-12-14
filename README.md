@@ -6,7 +6,26 @@ Based on miniKanren-with-symbolic-constraints.
 
 ## Running
 
+There are two files containing interactive examples: one which uses
+Racket's full GUI toolkit (`interactive.rkt`), and one that uses the
+older and simpler "legacy" graphics library.
+
+### Full GUI examples
+
 Open `interactive.rkt` in DrRacket.  Press the `Run` button.  Then call one of the example programs from the REPL:
+
+```
+(slider-run-n-appendo)
+```
+
+Use the slider to determine which answer
+from `(run* (l s) (appendo l s '(a b c d e)))` to display.
+
+---
+
+### Legacy graphics examples
+
+Open `legacy-interactive.rkt` in DrRacket.  Press the `Run` button.  Then call one of the example programs from the REPL:
 
 ---
 
@@ -64,3 +83,10 @@ Doesn't use miniKanren.
 ---
 
 Make sure to press the `Stop` button when you are finished!
+
+---
+
+TODO:
+
+* Try implementing Wallingford, Elm, and FrTime demos.
+* Exxplore the relational aspect much more.
