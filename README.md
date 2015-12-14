@@ -89,4 +89,4 @@ Make sure to press the `Stop` button when you are finished!
 ## TODO
 
 * Try implementing Wallingford, Elm, and FrTime demos.
-* Exxplore the relational aspect much more.
+* Explore the relational aspect much more.
