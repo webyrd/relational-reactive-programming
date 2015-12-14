@@ -14,6 +14,8 @@ older and simpler "legacy" graphics library (`legacy-interactive.rkt`).
 
 Open `interactive.rkt` in DrRacket.  Press the `Run` button.  Then call one of the example programs from the REPL:
 
+---
+
 ```
 (slider-run-n-appendo)
 ```
