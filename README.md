@@ -86,7 +86,7 @@ Make sure to press the `Stop` button when you are finished!
 
 ---
 
-TODO:
+## TODO
 
 * Try implementing Wallingford, Elm, and FrTime demos.
 * Exxplore the relational aspect much more.
