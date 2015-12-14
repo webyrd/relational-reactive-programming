@@ -20,11 +20,11 @@
 ;;; Use the slider to determine which answer
 ;;; from (run* (l s) (appendo l s '(a b c d e))) to display.
 (define (slider-run-n-appendo)
-  (let ((frame (new frame% [label "slider-run-n-appendo"])))
-    (let ((x-msg (new message% [parent frame]
-                      [label "answer for l"]))
-          (y-msg (new message% [parent frame]
-                      [label "answer for s"])))
+  (let ((frame (new frame% (label "slider-run-n-appendo"))))
+    (let ((x-msg (new message% (parent frame)
+                      (label "answer for l")))
+          (y-msg (new message% (parent frame)
+                      (label "answer for s"))))
       (let ((scrubber (new slider%
                            (label "run n")
                            (parent frame)
@@ -40,17 +40,16 @@
         (send frame show #t)))))
 
 
-
 ;;; Displays an editable text field representing the `out` argument in
 ;;; (run* (l s) (appendo l s out)).  Whenever the text field is changed,
 ;;; the run expression is re-run, and the results are displayed in a label.
 ;;;
 ;;; For example, try () or (a b c d e).
 (define (text-field-last-appendo-argument)
-  (let ((frame (new frame% [label "text-field-last-appendo-argument"])))
-    (let ((results (new message% [parent frame]
-                        [label "answers go here..."]
-                        [auto-resize #t])))
+  (let ((frame (new frame% (label "text-field-last-appendo-argument"))))
+    (let ((results (new message% (parent frame)
+                        (label "answers go here...")
+                        (auto-resize #t))))
       (let ((txt (new text-field%
                       (label "out")
                       (parent frame)
@@ -68,10 +67,10 @@
 ;;; from (run* (l s) (appendo l s out)), where 'out' is
 ;;; (), (a), (a b), (a b c), etc.
 (define (slider-appendo-out-length)
-  (let ((frame (new frame% [label "slider-appendo-out-length"])))
-    (let ((results (new message% [parent frame]
-                        [label "answers go here..."]
-                        [auto-resize #t])))
+  (let ((frame (new frame% (label "slider-appendo-out-length"))))
+    (let ((results (new message% (parent frame)
+                        (label "answers go here...")
+                        (auto-resize #t))))
       (let ((scrubber (new slider%
                            (label "out length")
                            (parent frame)
@@ -84,4 +83,27 @@
                                          (let ((out (take '(a b c d e f g h i j k l m n o p) len)))
                                            (let ((ans (run* (l s) (appendo l s out))))
                                              (send results set-label (format "~s" ans))))))))))
+        (send frame show #t)))))
+
+
+;;; Display information about mouse and key events.
+;;; Does not use miniKanren.
+(define (mousey)
+  (let ((frame (new frame% (label "mousey"))))
+    (let ((mouse-info (new message% (parent frame)
+                           (label "mouse information")))
+          (key-info (new message% (parent frame)
+                         (label "key information"))))
+      (let ((my-canvas%
+             (class canvas%
+               (define/override (on-event event)
+                 (send mouse-info set-label (symbol->string (send event get-event-type))))
+               (define/override (on-char event)
+                 (let ((key (send event get-key-code)))
+                   (let ((str (if (symbol? key)
+                                  (symbol->string key)
+                                  (string key))))
+                     (send key-info set-label str))))
+               (super-new))))
+        (new my-canvas% [parent frame])
         (send frame show #t)))))
