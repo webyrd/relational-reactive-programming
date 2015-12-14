@@ -26,9 +26,9 @@
 (define (slider-run-n-appendo)
   (let ((frame (new frame% [label "slider-run-n-appendo"])))
     (let ((x-msg (new message% [parent frame]
-                      [label "answer for x"]))
+                      [label "answer for l"]))
           (y-msg (new message% [parent frame]
-                      [label "answer for y"])))
+                      [label "answer for s"])))
       (let ((scrubber (new slider%
                            (label "run n")
                            (parent frame)
