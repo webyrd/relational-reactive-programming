@@ -8,7 +8,7 @@ Based on miniKanren-with-symbolic-constraints.
 
 There are two files containing interactive examples: one which uses
 Racket's full GUI toolkit (`interactive.rkt`), and one that uses the
-older and simpler "legacy" graphics library.
+older and simpler "legacy" graphics library (`legacy-interactive.rkt`).
 
 ### Full GUI examples
 
