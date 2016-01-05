@@ -4,6 +4,12 @@
 ;;; Inspired by Jonathan Edwards's Two-Way Dataflow example in Subtext: https://vimeo.com/106073134
 ;;; Thanks to Matt Hammer for the suggestion!
 
+;; Caveats:
+;; * Numbers are "Oleg numerals" (little-endian binary lists)
+;; * No negative values allowed!
+;; * The goals in the run expressions are reordered to prevent divergence.
+;; An alternative approach would be to use a timeout.
+
 (require "mk.rkt")
 (require "numbers.rkt")
 (require racket/gui/base)
