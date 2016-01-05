@@ -14,15 +14,6 @@
 (require "numbers.rkt")
 (require racket/gui/base)
 
-;;; window size
-(define horiz 300)
-(define vert 300)
-
-(define horiz-center (quotient horiz 2))
-(define vert-center (quotient vert 2))
-
-
-
 (define (temp-conversion)
   (let ((frame (new frame% (label "frame"))))
     (let ((display-F (new message% (parent frame)
